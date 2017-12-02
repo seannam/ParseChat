@@ -11,25 +11,35 @@ import Parse
 
 class LoginViewController: UIViewController {
 
+    let alertController = UIAlertController(title: "Error!", message: "Missing username or password!", preferredStyle: .alert)
+    
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
     @IBAction func onSignUp(_ sender: Any) {
         if !(usernameTextField.text?.isEmpty)! && !(passwordTextField.text?.isEmpty)! {
             registerUser(username: usernameTextField.text!, password: passwordTextField.text!)
+        } else {
+            present(alertController, animated: true)
         }
     }
     
     @IBAction func onLogin(_ sender: Any) {
         if !(usernameTextField.text?.isEmpty)! && !(passwordTextField.text?.isEmpty)! {
             loginUser(username: usernameTextField.text!, password: passwordTextField.text!)
+        } else {
+            present(alertController, animated: true)
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        let OKAction = UIAlertAction(title: "OK", style: .default) { (action) in
+            // handle response here. Doing nothing will dismiss the view.
+        }
+        // add the OK action to the alertController
+        self.alertController.addAction(OKAction)
     }
 
     override func didReceiveMemoryWarning() {
