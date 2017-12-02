@@ -11,7 +11,7 @@ import Parse
 
 class LoginViewController: UIViewController {
 
-    let alertController = UIAlertController(title: "Error!", message: "Missing username or password!", preferredStyle: .alert)
+    let alertController = UIAlertController(title: "Error!", message: "Missing username or password", preferredStyle: .alert)
     
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -85,7 +85,7 @@ class LoginViewController: UIViewController {
     }
     
     func segueToMain() {
-        print("segueToMain")
+        self.performSegue(withIdentifier: "loginSegue", sender: nil)
     }
     /*
     // MARK: - Navigation

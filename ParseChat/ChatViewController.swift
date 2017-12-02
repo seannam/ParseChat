@@ -7,9 +7,27 @@
 //
 
 import UIKit
+import Parse
 
 class ChatViewController: UIViewController {
 
+    @IBOutlet weak var messageTextField: UITextField!
+
+    @IBAction func onSend(_ sender: Any) {
+        if !(messageTextField.text?.isEmpty)! {
+            let chatMessage = PFObject(className: "Message")
+            chatMessage["text"] = messageTextField.text ?? ""
+            chatMessage.saveInBackground(block: { (success, error) in
+                if success {
+                    print("message was saved")
+                    self.messageTextField.text = ""
+                } else if let error = error {
+                    print("Problem saving message: \(error.localizedDescription)")
+                }
+            })
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
