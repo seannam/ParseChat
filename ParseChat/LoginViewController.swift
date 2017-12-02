@@ -60,6 +60,8 @@ class LoginViewController: UIViewController {
             if let error = error {
                 print(error.localizedDescription)
                 // TODO: add alert message
+                self.alertController.message = error.localizedDescription
+                self.present(self.alertController, animated: true)
             } else {
                 print("User registered successfully")
                 // manually segue to logged in view
@@ -73,6 +75,8 @@ class LoginViewController: UIViewController {
         PFUser.logInWithUsername(inBackground: username, password: password) { (user: PFUser?, error: Error?) in
             if let error = error {
                 print("user log in failed: \(error.localizedDescription)")
+                self.alertController.message = error.localizedDescription
+                self.present(self.alertController, animated: true)
             } else {
                 print("user logged in successfully")
                 self.segueToMain()
