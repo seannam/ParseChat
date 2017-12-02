@@ -21,6 +21,9 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func onLogin(_ sender: Any) {
+        if !(usernameTextField.text?.isEmpty)! && !(passwordTextField.text?.isEmpty)! {
+            loginUser(username: usernameTextField.text!, password: passwordTextField.text!)
+        }
     }
     
     override func viewDidLoad() {
@@ -50,13 +53,25 @@ class LoginViewController: UIViewController {
             } else {
                 print("User registered successfully")
                 // manually segue to logged in view
-                self.segueToLogin()
+                self.segueToMain()
             }
         }
     }
     
-    func segueToLogin() {
-        
+    func loginUser(username: String, password: String) {
+
+        PFUser.logInWithUsername(inBackground: username, password: password) { (user: PFUser?, error: Error?) in
+            if let error = error {
+                print("user log in failed: \(error.localizedDescription)")
+            } else {
+                print("user logged in successfully")
+                self.segueToMain()
+            }
+        }
+    }
+    
+    func segueToMain() {
+        print("segueToMain")
     }
     /*
     // MARK: - Navigation
