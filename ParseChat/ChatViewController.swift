@@ -9,10 +9,13 @@
 import UIKit
 import Parse
 
-class ChatViewController: UIViewController {
+class ChatViewController: UIViewController, UITableViewDataSource {
 
     @IBOutlet weak var messageTextField: UITextField!
-
+    @IBOutlet weak var tableView: UITableView!
+    
+    var messages: [PFObject] = []
+    
     @IBAction func onSend(_ sender: Any) {
         if !(messageTextField.text?.isEmpty)! {
             let chatMessage = PFObject(className: "Message")
@@ -28,10 +31,17 @@ class ChatViewController: UIViewController {
         }
     }
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        tableView.dataSource = self
+        
+        // Auto size row height based on cell autolayout constraints
+        tableView.rowHeight = UITableViewAutomaticDimension
+        // Provide an estimated row height. Used for calculating scroll indicator
+        tableView.estimatedRowHeight = 50
+        
+        Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.refresh), userInfo: nil, repeats: true)
     }
 
     override func didReceiveMemoryWarning() {
@@ -39,7 +49,43 @@ class ChatViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @objc func refresh() {
+        let query = PFQuery(className:"Message")
+        query.includeKey("user")
+        query.addDescendingOrder("createdAt")
+        query.findObjectsInBackground { (objects: [PFObject]?, error: Error?) in
+            if error == nil {
+                if let objects = objects {
+                    self.messages = objects
+                    self.tableView.reloadData()
+                }
+            } else {
+                print("Error: \(String(describing: error?.localizedDescription))")
+            }
+        }
+    }
 
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = self.tableView.dequeueReusableCell(withIdentifier: "ChatCell", for: indexPath) as! ChatCell
+        
+        if let user = messages[indexPath.row]["user"] as? PFUser {
+            // User found! update username label with username
+            cell.usernameLabel.text = user.username
+        } else {
+            // No user found, set default username
+            cell.usernameLabel.text = "�"
+        }
+        
+        cell.messageLabel.text = messages[indexPath.row]["text"] as? String
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return messages.count
+    }
+    
     /*
     // MARK: - Navigation
 

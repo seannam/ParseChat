@@ -15,6 +15,7 @@
 		C7F93D261FD333BF00754CCB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7F93D241FD333BF00754CCB /* LaunchScreen.storyboard */; };
 		C7F93D2E1FD3371500754CCB /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F93D2D1FD3371500754CCB /* LoginViewController.swift */; };
 		C7F93D301FD33E0700754CCB /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F93D2F1FD33E0700754CCB /* ChatViewController.swift */; };
+		C7F93D321FD344FA00754CCB /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F93D311FD344FA00754CCB /* ChatCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		C7F93D271FD333BF00754CCB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C7F93D2D1FD3371500754CCB /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		C7F93D2F1FD33E0700754CCB /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		C7F93D311FD344FA00754CCB /* ChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +92,7 @@
 				C7F93D271FD333BF00754CCB /* Info.plist */,
 				C7F93D2D1FD3371500754CCB /* LoginViewController.swift */,
 				C7F93D2F1FD33E0700754CCB /* ChatViewController.swift */,
+				C7F93D311FD344FA00754CCB /* ChatCell.swift */,
 			);
 			path = ParseChat;
 			sourceTree = "<group>";
@@ -228,6 +231,7 @@
 				C7F93D2E1FD3371500754CCB /* LoginViewController.swift in Sources */,
 				C7F93D1E1FD333BF00754CCB /* ViewController.swift in Sources */,
 				C7F93D301FD33E0700754CCB /* ChatViewController.swift in Sources */,
+				C7F93D321FD344FA00754CCB /* ChatCell.swift in Sources */,
 				C7F93D1C1FD333BF00754CCB /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

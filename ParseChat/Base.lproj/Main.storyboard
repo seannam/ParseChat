@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -71,7 +71,7 @@
         <!--Chat-->
         <scene sceneID="MPn-yQ-EgX">
             <objects>
-                <viewController id="5Qy-38-2Dd" customClass="ChatViewController" customModule="ParseChat" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChatViewController" id="5Qy-38-2Dd" customClass="ChatViewController" customModule="ParseChat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rbc-xe-S6i">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -96,13 +96,39 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="zhW-Wd-6OL">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChatCell" id="zhW-Wd-6OL" customClass="ChatCell" customModule="ParseChat" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zhW-Wd-6OL" id="tch-qB-bZL">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="username:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gmm-CV-ZNc">
+                                                    <rect key="frame" x="8" y="4" width="78" height="18"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="message appears here" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gls-46-IrJ">
+                                                    <rect key="frame" x="90" y="4" width="156" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Gls-46-IrJ" firstAttribute="top" secondItem="Gmm-CV-ZNc" secondAttribute="top" id="Fc2-5k-Fky"/>
+                                                <constraint firstItem="Gmm-CV-ZNc" firstAttribute="leading" secondItem="tch-qB-bZL" secondAttribute="leading" constant="8" id="U6z-as-QIb"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Gls-46-IrJ" secondAttribute="trailing" constant="4" id="VYp-eS-JIp"/>
+                                                <constraint firstItem="Gmm-CV-ZNc" firstAttribute="top" secondItem="tch-qB-bZL" secondAttribute="top" constant="4" id="iG4-Re-3h6"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Gls-46-IrJ" secondAttribute="bottom" constant="4" id="uTf-Vr-NS1"/>
+                                                <constraint firstItem="Gls-46-IrJ" firstAttribute="leading" secondItem="Gmm-CV-ZNc" secondAttribute="trailing" constant="4" id="v8R-Ir-Q8M"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="messageLabel" destination="Gls-46-IrJ" id="EPU-q0-DZo"/>
+                                            <outlet property="usernameLabel" destination="Gmm-CV-ZNc" id="c61-Ih-ciE"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -113,6 +139,7 @@
                     <navigationItem key="navigationItem" title="Chat" id="QTP-bH-i0d"/>
                     <connections>
                         <outlet property="messageTextField" destination="gby-S6-m1h" id="tYZ-5k-A4u"/>
+                        <outlet property="tableView" destination="cjr-b7-7WB" id="q05-fm-4iM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bPU-gK-4WW" userLabel="First Responder" sceneMemberID="firstResponder"/>
